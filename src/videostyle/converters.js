@@ -39,12 +39,14 @@ export function viewToModelStyleAttribute( styles ) {
         if ( !modelVideoElement ) {
             return;
         }
+        try{
 
-        for ( const style of nonDefaultStyles[ modelVideoElement.name ] ) {
-            if ( conversionApi.consumable.consume( viewElement, { classes: style.className } ) ) {
-                conversionApi.writer.setAttribute( 'videoStyle', style.name, modelVideoElement );
+            for ( const style of nonDefaultStyles[ modelVideoElement.name ] ) {
+                if ( conversionApi.consumable.consume( viewElement, { classes: style.className } ) ) {
+                    conversionApi.writer.setAttribute( 'videoStyle', style.name, modelVideoElement );
+                }
             }
-        }
+        }catch{}
     };
 }
 
